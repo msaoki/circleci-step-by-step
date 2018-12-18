@@ -10,7 +10,7 @@ jobs:
         POSTGRES_USER: root
         POSTGRES_DB: circle_test
     
-    parallelism: 1
+    parallelism: 4
 
     steps:
     - checkout
@@ -28,7 +28,7 @@ jobs:
         key: circleci-demo-java-spring-{{ checksum "pom.xml" }}
     - run: 
         command: |
-            mvn test -Dtest=$(circleci tests glob "src/test/**/*.java" | circleci tests split --split-by=timings | sed -E 's/^(.*\/)*//' | sed -z 's/\n/,/g')
+            mvn test -Dtest=$(circleci tests split --split-by=timings | sed -E 's/^(.*\/)*//' | sed -z 's/\n/,/g')
             mvn package -Dmaven.test.skip
     - store_test_results:
         path: target/surefire-reports
@@ -44,7 +44,7 @@ jobs:
         POSTGRES_USER: root
         POSTGRES_DB: circle_test
     
-    parallelism: 1
+    parallelism: 4
 
     steps:
     - checkout
@@ -78,7 +78,7 @@ jobs:
         POSTGRES_USER: root
         POSTGRES_DB: circle_test
     
-    parallelism: 1
+    parallelism: 4
 
     steps:
     - checkout
