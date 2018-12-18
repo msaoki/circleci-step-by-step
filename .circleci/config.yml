@@ -10,7 +10,7 @@ jobs:
         POSTGRES_USER: root
         POSTGRES_DB: circle_test
     
-    parallelism: 4
+    parallelism: 1
 
     steps:
     - checkout
@@ -44,7 +44,7 @@ jobs:
         POSTGRES_USER: root
         POSTGRES_DB: circle_test
     
-    parallelism: 4
+    parallelism: 1
 
     steps:
     - checkout
@@ -78,7 +78,7 @@ jobs:
         POSTGRES_USER: root
         POSTGRES_DB: circle_test
     
-    parallelism: 4
+    parallelism: 1
 
     steps:
     - checkout
