@@ -28,6 +28,8 @@ jobs:
         key: circleci-demo-java-spring-{{ checksum "pom.xml" }}
     - run: 
         command: |
+            mvn test -Dtest=$(circleci tests glob "src/test/**/DemoJavaSpringApplication10Tests.java" | circleci tests split  --index=3 --split-by=timings | sed -E 's/^(.*\/)*//' | sed -z 's/\n/,/g')
+            mvn test -Dtest=$(circleci tests glob "src/test/**/DemoJavaSpringApplication1Tests.java" | circleci tests split  --index=2 --split-by=timings | sed -E 's/^(.*\/)*//' | sed -z 's/\n/,/g')
             mvn test -Dtest=$(circleci tests glob "src/test/**/*.java" | circleci tests split  --index=1 --split-by=timings | sed -E 's/^(.*\/)*//' | sed -z 's/\n/,/g')
             mvn package -Dmaven.test.skip
     - store_test_results:
