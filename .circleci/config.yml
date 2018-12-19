@@ -29,7 +29,6 @@ jobs:
     - run: 
         command: |
             mvn test -Dtest=$(circleci tests glob "src/test/**/DemoJavaSpringApplication10Tests.java" | circleci tests split  --index=3 | sed -E 's/^(.*\/)*//' | sed -z 's/\n/,/g')
-            mvn test -Dtest=$(circleci tests glob "src/test/**/DemoJavaSpringApplication1Tests.java" | circleci tests split  --index=2 --split-by=timings | sed -E 's/^(.*\/)*//' | sed -z 's/\n/,/g')
             mvn package -Dmaven.test.skip
     - store_test_results:
         path: target/surefire-reports
