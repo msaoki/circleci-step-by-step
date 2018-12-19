@@ -28,7 +28,7 @@ jobs:
         key: circleci-demo-java-spring-{{ checksum "pom.xml" }}
     - run: 
         command: |
-            mvn test -Dtest=$(circleci tests split < src/test/java/com/circleci/demojavaspring/ | sed -E 's/^(.*\/)*//' | sed -z 's/\n/,/g')
+            mvn test -Dtest=$(circleci tests split < src/test/java/com/circleci/demojavaspring/ --split-by=timings | sed -E 's/^(.*\/)*//' | sed -z 's/\n/,/g')
             mvn package -Dmaven.test.skip
     - store_test_results:
         path: target/surefire-reports
