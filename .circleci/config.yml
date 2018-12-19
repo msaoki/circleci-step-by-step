@@ -10,7 +10,7 @@ jobs:
         POSTGRES_USER: root
         POSTGRES_DB: circle_test
     
-    parallelism: 1
+    parallelism: 4
 
     steps:
     - checkout
@@ -108,8 +108,12 @@ workflows:
   build:
     jobs:
       - "jdk-8"
-      - "jdk-10"
-      - "jdk-11"
+      - "jdk-10":
+          requires: |
+            "jdk-8"
+      - "jdk-11":
+          requires: |
+            "jdk-8"
 
 
 
