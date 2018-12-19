@@ -28,7 +28,7 @@ jobs:
         key: circleci-demo-java-spring-{{ checksum "pom.xml" }}
     - run: 
         command: |
-            mvn test -Dtest=$(circleci tests glob "src/test/**/*.java" | circleci tests split --split-by=timings | sed -E 's/^(.*\/)*//' | sed -z 's/\n/,/g')
+            mvn test -Dtest=$(circleci tests glob "src/test/**/*.java" | circleci tests split --total=4 --split-by=timings | sed -E 's/^(.*\/)*//' | sed -z 's/\n/,/g')
             mvn package -Dmaven.test.skip
     - store_test_results:
         path: target/surefire-reports
@@ -108,8 +108,12 @@ workflows:
   build:
     jobs:
       - "jdk-8"
-      - "jdk-10"
-      - "jdk-11"
+      - "jdk-10":
+          requires:
+            - jdk-8
+      - "jdk-11":
+          requires:
+            - jdk-8
 
 
 
