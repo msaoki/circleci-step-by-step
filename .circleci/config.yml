@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  jdk-8:
+  test-A:
     docker:
     - image: circleci/openjdk:8-jdk-browsers
     - image: circleci/postgres:9.6.3-alpine
@@ -14,7 +14,7 @@ jobs:
         name: Wait for DB
         command: dockerize -wait tcp://127.0.0.1:5432 -timeout 120s
 
-  jdk-10:
+  test-B:
     docker:
     - image: circleci/openjdk:10-jdk-browsers
     - image: circleci/postgres:9.6.3-alpine
@@ -28,7 +28,7 @@ jobs:
         name: Wait for DB
         command: dockerize -wait tcp://127.0.0.1:5432 -timeout 120s
 
-  jdk-11:
+  test-C:
     docker:
     - image: circleci/openjdk:11-jdk-browsers
     - image: circleci/postgres:9.6.3-alpine
@@ -46,7 +46,11 @@ workflows:
   version: 2
   build:
     jobs:
-      - "jdk-8"
-      - "jdk-10"
-      - "jdk-11"
+      - "test-A"
+      - "test-B":
+          requires:
+            - test-A
+      - "test-C":
+          requires:
+            - test-A
 
