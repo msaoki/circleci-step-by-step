@@ -1,0 +1,5 @@
+src/test/java/com/circleci/demojavaspring/DemoJavaSpringApplication1Tests.java
+src/test/java/com/circleci/demojavaspring/DemoJavaSpringApplication2Tests.java
+src/test/java/com/circleci/demojavaspring/DemoJavaSpringApplication3Tests.java
+src/test/java/com/circleci/demojavaspring/DemoJavaSpringApplication4Tests.java
+src/test/java/com/circleci/demojavaspring/DemoJavaSpringApplication5Tests.java
