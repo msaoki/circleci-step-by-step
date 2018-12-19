@@ -29,7 +29,6 @@ jobs:
     - run: 
         command: |
             mvn test -- $(circleci tests glob "src/test/**/*.java" | circleci tests split)
-            mvn package -Dmaven.test.skip
     - store_test_results:
         path: target/surefire-reports
     - store_artifacts:
