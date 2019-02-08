@@ -9,8 +9,6 @@ jobs:
       environment:
         POSTGRES_USER: root
         POSTGRES_DB: circle_test
-    
-    parallelism: 1
 
     steps:
     - checkout
